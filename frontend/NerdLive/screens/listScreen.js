@@ -1,31 +1,39 @@
 import React, { Component } from 'react'
 import { View } from 'react-native'
 import NewsList from '../components/newsList'
-import Header from '../components/header'
 import { Navigation } from 'react-native-navigation'
 
 class ListScreen extends Component {
-
   constructor() {
     super()
     this.state = {
       articles: [],
       articleUrl: null
+
     }
-    this.viewArticle = this.viewArticle.bind(this)
   }
 
-  viewArticle(event) {
-    console.log(event)
-    this.props.navigator.push({
-      screen: 'NerdLive.WebScreen'
+  componentDidMount() {
+    this.fetchNewsArticles()
+  }
+
+
+  fetchNewsArticles() {
+    const apiUrl = 'https://newsapi.org/v2/everything?sources=techcrunch&apiKey=a4afa1568c214408964517e6ab810a93'
+     fetch(apiUrl)
+    .then(response => {
+      return response.json()
+    })
+    .then(response => {
+      this.setState({articles: response.articles})
     })
   }
   render() {
     return (
       <View>
-        <Header />
-        <NewsList />
+        {this.state.articles
+          ? <NewsList navi={this.props} data={this.state.articles}  />
+          : null}
       </View>
     )
   }

@@ -1,9 +1,8 @@
-import React from 'react';
-import { AppRegistry } from 'react-native';
-import App from './App';
+import { AppRegistry } from 'react-native'
+import App from './App'
 
 const Index = () => (
         <App />
 );
 
-AppRegistry.registerComponent('NerdLive', () => Index);
+AppRegistry.registerComponent('NerdLive2', () => Index)

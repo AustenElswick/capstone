@@ -1,48 +1,13 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import {View, FlatList, StyleSheet, List} from 'react-native'
 import ArticleListItem from './articleListItem'
 
 class NewsList extends Component {
-
-  constructor() {
-    super()
-    this.state = {
-      articles: [],
-      imagePressed: false
-    }
-    this.switchPressedStateAndCallRedirect = this.switchPressedStateAndCallRedirect.bind(this)
-  }
-
-  componentWillMount() {
-    this.fetchNewsArticles()
-  }
-
-  fetchNewsArticles() {
-    const apiUrl = 'https://newsapi.org/v2/everything?sources=techcrunch&apiKey=a4afa1568c214408964517e6ab810a93'
-     fetch(apiUrl)
-    .then(response => {
-      return response.json()
-    })
-    .then(response => {
-      this.setState({articles: response.articles})
-    })
-  }
-
-  switchPressedStateAndCallRedirect() {
-    const isPressed = this.state.imagePressed
-    this.setState({imagePressed: !isPressed})
-  }
-
-  redirect() {
-
-  }
-
   render() {
     return (
       <View>
-        {this.state.articles
-          ? <FlatList
-            data={this.state.articles}
+          <FlatList
+            data={this.props.data}
             keyExtractor={(item, index) => `${index}`}
             renderItem={( article ) => (
              <ArticleListItem
@@ -50,12 +15,13 @@ class NewsList extends Component {
               author={article.item.author}
               imgUrl={article.item.urlToImage}
               url={article.item.url}
+              navi={this.props.navi}
               />)}
             />
-          : null }
       </View>
     )
   }
+
 }
 
 const styles = StyleSheet.create({

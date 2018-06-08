@@ -1,21 +1,34 @@
-import React from 'react'
-import {View, Text, Image, TouchableOpacity} from 'react-native'
+import React, { Component } from 'react'
+import {View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native'
+import { Navigation } from 'react-native-navigation'
 
-const ArticleListItem = ({ author, title, imgUrl, url }) => {
-  const { imgStyle, viewStyle, textStyle } = styles
-  return(
-    <View style={viewStyle}>
-      <Text>Author: {author}</Text>
-      <Text>{title}</Text>
-      <TouchableOpacity>
-        <Image source={{uri: imgUrl}} alt='article image' style={imgStyle} />
-        <Text style={textStyle}>{url}</Text>
-      </TouchableOpacity>
-    </View>
-  )
+
+class ArticleListItem extends Component {
+
+  viewArticle = () => {
+    this.props.navi.navigator.push({
+      screen: 'NerdLive.WebScreen',
+      passProps: {src: this.props.url},
+      title: 'Article Viewer',
+    })
+  }
+
+
+
+  render() {
+    return (
+      <View style={styles.viewStyle}>
+        <Text>Author: {this.props.author}</Text>
+        <Text>{this.props.title}</Text>
+        <TouchableOpacity onPress={() => this.viewArticle(this.props)}>
+          <Image source={{uri: this.props.imgUrl}} alt='article image' style={styles.imgStyle} />
+        </TouchableOpacity>
+      </View>
+    )
+  }
 }
 
-const styles = {
+const styles = StyleSheet.create({
   imgStyle: {
     width: 100,
     height: 100
@@ -26,10 +39,7 @@ const styles = {
     paddingBottom: 20,
     borderWidth: 1,
     borderColor: '#434547'
-  },
-  textStyle:{
-    display: 'none'
   }
-}
+})
 
 export default ArticleListItem
