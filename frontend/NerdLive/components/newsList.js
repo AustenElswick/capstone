@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {View, FlatList, StyleSheet, List} from 'react-native'
+import {View, FlatList, StyleSheet} from 'react-native'
 import ArticleListItem from './articleListItem'
 
 class NewsList extends Component {

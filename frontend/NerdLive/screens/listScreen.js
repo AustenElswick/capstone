@@ -8,15 +8,12 @@ class ListScreen extends Component {
     super()
     this.state = {
       articles: [],
-      articleUrl: null
-
     }
   }
 
   componentDidMount() {
     this.fetchNewsArticles()
   }
-
 
   fetchNewsArticles() {
     const apiUrl = 'https://newsapi.org/v2/everything?sources=techcrunch&apiKey=a4afa1568c214408964517e6ab810a93'
@@ -32,7 +29,7 @@ class ListScreen extends Component {
     return (
       <View>
         {this.state.articles
-          ? <NewsList navi={this.props} data={this.state.articles}  />
+          ? <NewsList navi={this.props} data={this.state.articles} />
           : null}
       </View>
     )

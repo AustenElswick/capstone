@@ -1,18 +1,14 @@
 import React, { Component } from 'react'
-import {View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native'
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import { Navigation } from 'react-native-navigation'
 
-
-class ArticleListItem extends Component {
+class FavoriteListItem extends Component {
 
   viewArticle = () => {
     this.props.navi.navigator.push({
       screen: 'NerdLive.WebScreen',
       passProps: {
         src: this.props.url,
-        author: this.props.author,
-        title: this.props.title,
-        imgUrl: this.props.imgUrl,
       },
       title: 'Article Viewer',
     })
@@ -24,7 +20,7 @@ class ArticleListItem extends Component {
         <Text>Author: {this.props.author}</Text>
         <Text>{this.props.title}</Text>
         <TouchableOpacity onPress={() => this.viewArticle(this.props)}>
-          <Image source={{uri: this.props.imgUrl}} alt='article image' style={styles.imgStyle} />
+          <Image style={styles.imgStyle} source={{uri :this.props.imgUrl}}></Image>
         </TouchableOpacity>
       </View>
     )
@@ -45,4 +41,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default ArticleListItem
+export default FavoriteListItem

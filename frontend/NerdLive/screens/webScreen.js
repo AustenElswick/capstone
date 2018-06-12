@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { View } from 'react-native'
 import ViewArticle from '../components/viewArticle'
-import Icon from 'react-native-vector-icons/Ionicons'
-const iosStar = (<Icon name="ios-star" size={30} color="#900" />)
 
 class WebScreen extends Component {
 
@@ -27,13 +25,18 @@ class WebScreen extends Component {
         this.props.navigator.push({
           screen: 'NerdLive.FavoritesScreen',
           title: 'Favorites',
-          passProps: this.props.src
+          passProps: {
+            url: this.props.src,
+            author: this.props.author,
+            title: this.props.title,
+            imgUrl: this.props.imgUrl
+          }
         })
       }
     }
   }
+
   render() {
-    console.log(this.props)
     return (
         <ViewArticle url={this.props.src} />
     )

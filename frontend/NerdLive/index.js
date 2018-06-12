@@ -5,4 +5,4 @@ const Index = () => (
         <App />
 );
 
-AppRegistry.registerComponent('NerdLive2', () => Index)
+AppRegistry.registerComponent('NerdLive', () => Index)
