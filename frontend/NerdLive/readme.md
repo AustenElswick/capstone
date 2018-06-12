@@ -1,6 +1,6 @@
 ##NerdLive
 
-![NerdLive](./NerdLive.jpg)
+![NerdLive](./NerdLive.png)
 
 ##App Description
 --This app is a tech news viewer that allows you to save an article to your favorites and view it later.
